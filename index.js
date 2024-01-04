@@ -14,15 +14,22 @@ const options = {
 };
 // function for jokes show in html page.
 async function myjoke() {
-  joke_show.innerHTML = "Updating...";
-  btn.disabled = true;
-  btn.innerHTML = "Loading..."
-  const res = await fetch(ApiURL, options);
-  const data = await res.json();
-  btn.disabled = false;
-  btn.innerHTML = "Tell me a joke";
-//   console.log(data[0].joke);
-  const joke_daata = data[0].joke;
-  joke_show.innerHTML = joke_daata;
+  try {
+    joke_show.innerHTML = "Updating...";
+    btn.disabled = true;
+    btn.innerHTML = "Loading..."
+    const res = await fetch(ApiURL, options);
+    const data = await res.json();
+    btn.disabled = false;
+    btn.innerHTML = "Tell me a joke";
+  //   console.log(data[0].joke);
+    const joke_data = data[0].joke;
+    joke_show.innerHTML = joke_data;
+  } catch (error) {
+    joke_show.innerHTML = "An Error pls try leter";
+    btn.innerHTML = "Tell me a joke";
+    console.log(error);
+  }
+ 
   // console.log("hello");
 }
